@@ -1,4 +1,9 @@
 <div>
   <h1>Rooms</h1>
+  <ul>
+    <%= for room <- @rooms do %>
+    <li><%= room.name %></li>
+    <% end %>
+  </ul>
   <a href="/create-room">Create Room</a>
 </div>

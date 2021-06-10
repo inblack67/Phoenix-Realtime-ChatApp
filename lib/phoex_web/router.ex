@@ -19,6 +19,7 @@ defmodule PhoexWeb.Router do
     get("/", RoomController, :index)
     get("/create-room", RoomController, :new)
     post("/rooms", RoomController, :create)
+    get("/rooms:id", RoomController, :show)
   end
 
   # Other scopes may use custom stacks.

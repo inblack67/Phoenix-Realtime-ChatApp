@@ -4,7 +4,8 @@ defmodule PhoexWeb.RoomController do
   alias Phoex.Talk.TalkRepo
 
   def index(conn, _params) do
-    render(conn, "index.html")
+    rooms = TalkRepo.list_rooms()
+    render(conn, "index.html", rooms: rooms)
   end
 
   def new(conn, _params) do
