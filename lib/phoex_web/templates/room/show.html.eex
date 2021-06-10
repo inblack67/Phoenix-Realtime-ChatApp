@@ -1,0 +1,6 @@
+<div>
+  <h2>Room Details</h2>
+  <p>Name: <%= @room.name %></p>
+  <p>Topic: <%= @room.topic %></p>
+  <p>Description: <%= @room.description %></p>
+</div>

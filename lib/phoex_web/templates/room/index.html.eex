@@ -1,8 +1,12 @@
 <div>
   <h1>Rooms</h1>
   <ul>
-    <%= for room <- @rooms do %> <%= link room.name, to: Routes.room_path(@conn,
-    :show, Integer.to_string(room.id)) %> <% end %>
+    <%= for room <- @rooms do %>
+    <li>
+      <%= link room.name, to: Routes.room_path(@conn, :show,
+      Integer.to_string(room.id)) %>
+      <% end %>
+    </li>
   </ul>
   <a href="/create-room">Create Room</a>
 </div>
