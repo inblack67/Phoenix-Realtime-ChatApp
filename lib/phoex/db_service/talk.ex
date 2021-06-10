@@ -13,4 +13,14 @@ defmodule Phoex.Talk.TalkRepo do
   end
 
   def get_room!(id), do: Repo.get!(Room, id)
+
+  def room_changeset(%Room{} = room) do
+    Room.changeset(room, %{})
+  end
+
+  def update_room(%Room{} = room, attrs) do
+    room
+    |> Room.changeset(attrs)
+    |> Repo.update()
+  end
 end

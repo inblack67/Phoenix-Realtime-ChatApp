@@ -3,4 +3,6 @@
   <p>Name: <%= @room.name %></p>
   <p>Topic: <%= @room.topic %></p>
   <p>Description: <%= @room.description %></p>
+  <p><%= link "Edit", to: Routes.room_path(@conn, :show, "#{@room.id}") %></p>
+  <p><%= link "Delete", to: Routes.room_path(@conn, :show, "#{@room.id}") %></p>
 </div>

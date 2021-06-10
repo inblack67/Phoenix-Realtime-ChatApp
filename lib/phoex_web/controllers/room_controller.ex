@@ -32,4 +32,25 @@ defmodule PhoexWeb.RoomController do
     room = TalkRepo.get_room!(id)
     render(conn, "show.html", room: room)
   end
+
+  def edit(conn, %{"id" => id}) do
+    room = TalkRepo.get_room!(id)
+    changeset = TalkRepo.room_changeset(room)
+    render(conn, "edit.html", changeset: changeset)
+    # render(conn, "new.html", changeset: changeset))
+  end
+
+  def update(conn, %{"id" => id, "room" => room_input}) do
+    room = TalkRepo.get_room!(id)
+
+    case(TalkRepo.update_room(room, room_input)) do
+      {:ok, _} ->
+        conn
+        |> put_flash(:info, "Room updated")
+        |> redirect(to: Routes.room_path(conn, :show, room))
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        render(conn, "edit.html", room: room, changeset: changeset)
+    end
+  end
 end

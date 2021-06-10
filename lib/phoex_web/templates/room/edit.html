@@ -1,0 +1,17 @@
+<div>
+  <h2>Edit Room</h2>
+  <%= form_for @changeset, Routes.room_path(@conn, :update), fn f -> %>
+  <div>
+    <%= label f, :name %> <%= text_input f, :name %> <%= error_tag f, :name %>
+  </div>
+  <div>
+    <%= label f, :description %> <%= text_input f, :description %> <%= error_tag
+    f, :description %>
+  </div>
+  <div>
+    <%= label f, :topic %> <%= text_input f, :topic %> <%= error_tag f, :topic
+    %>
+  </div>
+  <div><%= submit "submit" %></div>
+  <% end %>
+</div>
