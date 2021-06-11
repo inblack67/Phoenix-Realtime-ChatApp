@@ -8,4 +8,18 @@
     <%= link "Delete", to: Routes.room_path(@conn, :delete, @room), method:
     :delete, data: [confirm: "Are you sure?"] %>
   </p>
+
+  <ul id="message-list"></ul>
+  <form id="message-form">
+    <input
+      type="text"
+      id="message-body"
+      placeholder="Input message for Room #<%= @room.name %>"
+    />
+    <button id="send-message">Send</button>
+  </form>
 </div>
+
+<script>
+  window.roomId = `<%= @room.id %>`;
+</script>
