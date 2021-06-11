@@ -25,6 +25,7 @@ defmodule Phoex.Talk.TalkRepo do
   end
 
   def delete_room(%Room{} = room) do
-    Repo.delete!(room)
+    room
+    |> Repo.delete()
   end
 end

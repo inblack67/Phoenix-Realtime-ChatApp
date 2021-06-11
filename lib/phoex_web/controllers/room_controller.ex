@@ -53,4 +53,12 @@ defmodule PhoexWeb.RoomController do
         render(conn, "edit.html", room: room, changeset: changeset)
     end
   end
+
+  def delete(conn, %{"id" => id}) do
+    room = TalkRepo.get_room!(id)
+    {:ok, _room} = TalkRepo.delete_room(room)
+    conn
+    |> put_flash(:info, "Room deleted")
+    |> redirect(to: Routes.room_path(conn, :index))
+  end
 end
