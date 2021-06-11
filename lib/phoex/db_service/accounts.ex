@@ -6,7 +6,7 @@ defmodule Phoex.Accounts.AccountsRepo do
     user = Repo.get_by(User, email: email)
 
     cond do
-      user && user.password_hash === password ->
+      user && Argon2.verify_pass(user.password_hash, password) ->
         {:ok, user}
 
       true ->
@@ -26,5 +26,10 @@ defmodule Phoex.Accounts.AccountsRepo do
 
   def sign_out(conn) do
     Plug.Conn.configure_session(conn, drop: true)
+  end
+
+  def register(input) do
+    User.registration_changeset(%User{}, input)
+    |> Repo.insert()
   end
 end

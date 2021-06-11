@@ -20,6 +20,9 @@
           </strong></h3>  
       </nav>
       <% end %>
+      <button>
+        <%= link "Sign Up", to: Routes.registration_path(@conn, :new) %>
+       </button>
       <%= @inner_content %>
     </main>
   </body>

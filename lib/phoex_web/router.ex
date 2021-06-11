@@ -19,6 +19,7 @@ defmodule PhoexWeb.Router do
     get("/", RoomController, :index)
     resources("/rooms", RoomController, except: [:index])
     resources("/sessions", SessionController, only: [:new, :create])
+    resources("/registration", RegistrationController, only: [:new, :create])
     delete("/sign_out", SessionController, :delete)
 
     # without resources

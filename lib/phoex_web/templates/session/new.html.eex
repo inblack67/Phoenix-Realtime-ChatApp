@@ -9,7 +9,7 @@
       error_tag f, :email %>
     </div>
     <div>
-      <%= label f, :password, class: "myform" %> <%= text_input f, :password,
+      <%= label f, :password, class: "myform" %> <%= password_input f, :password,
       placeholder: "Password", required: true %> <%= error_tag f, :password %>
     </div>
     <div><%= submit "Sign In" %></div>
