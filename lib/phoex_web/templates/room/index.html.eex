@@ -4,9 +4,8 @@
     <%= for room <- @rooms do %>
     <li>
       <%= link room.name, to: Routes.room_path(@conn, :show,
-      Integer.to_string(room.id)) %>
-      <% end %>
+      Integer.to_string(room.id)) %> <% end %>
     </li>
   </ul>
-  <a href="/create-room">Create Room</a>
+  <%= link "Create Room", to: Routes.room_path(@conn, :new) %>
 </div>

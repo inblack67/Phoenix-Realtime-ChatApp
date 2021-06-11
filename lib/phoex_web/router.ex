@@ -17,12 +17,15 @@ defmodule PhoexWeb.Router do
     pipe_through(:browser)
 
     get("/", RoomController, :index)
-    get("/create-room", RoomController, :new)
-    post("/rooms", RoomController, :create)
-    get("/rooms/:id", RoomController, :show)
-    get("/rooms/:id/edit", RoomController, :edit)
-    put("/rooms/:id", RoomController, :update)
-    delete("/rooms/:id", RoomController, :delete)
+    resources("/rooms", RoomController, except: [:index])
+
+    # without resources
+    # get("/create-room", RoomController, :new)
+    # post("/rooms", RoomController, :create)
+    # get("/rooms/:id", RoomController, :show)
+    # get("/rooms/:id/edit", RoomController, :edit)
+    # put("/rooms/:id", RoomController, :update)
+    # delete("/rooms/:id", RoomController, :delete)
   end
 
   # Other scopes may use custom stacks.

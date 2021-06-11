@@ -11,6 +11,9 @@ mix ecto.rollback
 iex -S mix
 
 %Room{} |> Room.changeset(%{name: "typescript", description: "any programming"})
+
+mix phx.routes
+
 ```
 
 To start your Phoenix server:
