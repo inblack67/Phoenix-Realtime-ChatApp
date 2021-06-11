@@ -12,6 +12,14 @@
     <main role="main" class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <%= if Phoex.Accounts.AccountsRepo.user_signed_in?(@conn) do %>
+      <nav>
+        <h3>Hello <strong>
+          <%= Phoex.Accounts.AccountsRepo.current_user(@conn).username %>
+          <%= link "Sing Out", to: Routes.session_path(@conn, :delete), method: :delete %>
+          </strong></h3>  
+      </nav>
+      <% end %>
       <%= @inner_content %>
     </main>
   </body>

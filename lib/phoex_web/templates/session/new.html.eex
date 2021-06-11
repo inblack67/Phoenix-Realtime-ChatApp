@@ -1,0 +1,18 @@
+<div>
+  <h2>Login</h2>
+  <div>
+    <%= form_for @conn, Routes.session_path(@conn, :create), [as: :session,
+    class: "someclass"], fn f -> %>
+    <div>
+      <%= label f, :email, class: "myform"%> <%= text_input f, :email,
+      placeholder: "Email Address", required: true, autofocus: true %> <%=
+      error_tag f, :email %>
+    </div>
+    <div>
+      <%= label f, :password, class: "myform" %> <%= text_input f, :password,
+      placeholder: "Password", required: true %> <%= error_tag f, :password %>
+    </div>
+    <div><%= submit "Sign In" %></div>
+    <% end %>
+  </div>
+</div>
