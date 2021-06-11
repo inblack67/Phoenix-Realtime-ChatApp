@@ -12,6 +12,7 @@ defmodule Phoex.Accounts.User do
     field :password_confirmation, :string, virtual: true
 
     has_many :rooms, Room
+    has_many :messages, Phoex.Talk.Message
 
     timestamps()
   end

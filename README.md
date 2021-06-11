@@ -24,6 +24,9 @@ mix ecto.gen.migration add_user_to_roo
 
 # generate presence module
 mix phx.gen.presence
+
+# messages schema
+mix phx.gen.schema Talk.Message messages room_id:references:rooms user_id:references:users bod
 ```
 
 To start your Phoenix server:

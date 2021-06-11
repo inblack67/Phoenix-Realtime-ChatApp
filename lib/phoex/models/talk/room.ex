@@ -9,6 +9,8 @@ defmodule Phoex.Talk.Room do
     field :topic, :string
 
     belongs_to :user, User
+    has_many :messages, Phoex.Talk.Message
+
     timestamps()
   end
 

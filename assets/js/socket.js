@@ -17,6 +17,7 @@ if (roomId) {
     .join()
     .receive('ok', (resp) => {
       console.log('Joined successfully', resp);
+      resp.messages.reverse().map((message) => displayMessage(message));
     })
     .receive('error', (resp) => {
       console.log('Unable to join', resp);
@@ -76,6 +77,7 @@ if (roomId) {
   });
 
   const displayMessage = (message) => {
+    console.log('message = ', message);
     const template = `<li>
 ${message.user} => ${message.body}
 </li>`;
