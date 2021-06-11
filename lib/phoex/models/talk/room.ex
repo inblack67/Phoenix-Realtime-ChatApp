@@ -1,12 +1,14 @@
 defmodule Phoex.Talk.Room do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Phoex.Accounts.User
 
   schema "rooms" do
     field :description, :string
     field :name, :string
     field :topic, :string
 
+    belongs_to :user, User
     timestamps()
   end
 

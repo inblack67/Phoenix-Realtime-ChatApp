@@ -19,6 +19,8 @@ mix phx.gen.schema Accounts.User users email:unique username:unique password_has
 # drop db
 mix ecto.drop
 
+# new migration => blamk
+mix ecto.gen.migration add_user_to_roo
 ```
 
 To start your Phoenix server:

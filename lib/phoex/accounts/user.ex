@@ -2,6 +2,7 @@ defmodule Phoex.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
   alias Phoex.Accounts.User
+  alias Phoex.Talk.Room
 
   schema "users" do
     field :email, :string
@@ -9,6 +10,9 @@ defmodule Phoex.Accounts.User do
     field :username, :string
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
+
+    has_many :rooms, Room
+
     timestamps()
   end
 

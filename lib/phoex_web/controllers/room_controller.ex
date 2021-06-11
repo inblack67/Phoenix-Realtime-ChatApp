@@ -5,6 +5,7 @@ defmodule PhoexWeb.RoomController do
 
   # everything is protected except index
   plug :protect_me when action not in [:index]
+  plug :authorize_user when action in [:edit, :update, :delete]
 
   def index(conn, _params) do
     rooms = TalkRepo.list_rooms()
@@ -20,7 +21,7 @@ defmodule PhoexWeb.RoomController do
   # look for room map => bind that to room_input
   # every handler needs to retun the conn
   def create(conn, %{"room" => room_input}) do
-    case TalkRepo.create_room(room_input) do
+    case TalkRepo.create_room(conn.assigns.current_user, room_input) do
       {:ok, _room} ->
         conn
         |> put_flash(:info, "Room created")
@@ -60,20 +61,36 @@ defmodule PhoexWeb.RoomController do
   def delete(conn, %{"id" => id}) do
     room = TalkRepo.get_room!(id)
     {:ok, _room} = TalkRepo.delete_room(room)
+
     conn
     |> put_flash(:info, "Room deleted")
     |> redirect(to: Routes.room_path(conn, :index))
   end
 
-  defp protect_me(conn, _params)do
+  defp protect_me(conn, _params) do
     if conn.assigns.signed_in? do
       conn
     else
       conn
       |> put_flash(:error, "You'd need to Sign In for this")
       |> redirect(to: Routes.session_path(conn, :new))
-      |> halt() # halt stops the connection
+      # halt stops the connection
+      |> halt()
     end
   end
 
+  defp authorize_user(conn, _params) do
+    %{params: %{"id" => room_id}} = conn
+    room = TalkRepo.get_room!(room_id)
+
+    if conn.assigns.current_user.id === room.user_id do
+      conn
+    else
+      conn
+      |> put_flash(:error, "Not Authorized")
+      |> redirect(to: Routes.room_path(conn, :index))
+      # halt stops the connection
+      |> halt()
+    end
+  end
 end
