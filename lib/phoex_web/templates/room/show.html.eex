@@ -9,6 +9,7 @@
     :delete, data: [confirm: "Are you sure?"] %>
   </p>
 
+  <ul id="online-users"></ul>
   <ul id="message-list"></ul>
   <form id="message-form">
     <input

@@ -21,6 +21,9 @@ mix ecto.drop
 
 # new migration => blamk
 mix ecto.gen.migration add_user_to_roo
+
+# generate presence module
+mix phx.gen.presence
 ```
 
 To start your Phoenix server:

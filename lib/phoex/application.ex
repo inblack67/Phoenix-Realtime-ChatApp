@@ -14,9 +14,10 @@ defmodule Phoex.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Phoex.PubSub},
       # Start the Endpoint (http/https)
-      PhoexWeb.Endpoint
+      PhoexWeb.Endpoint,
       # Start a worker by calling: Phoex.Worker.start_link(arg)
       # {Phoex.Worker, arg}
+      PhoexWeb.Presence
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
