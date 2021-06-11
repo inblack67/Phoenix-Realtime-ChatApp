@@ -16,8 +16,10 @@
       <nav>
         <h3>Hello <strong>
           <%= Phoex.Accounts.AccountsRepo.current_user(@conn).username %>
-          <%= link "Sign Out", to: Routes.session_path(@conn, :delete), method: :delete %>
-          </strong></h3>  
+          </strong></h3> 
+          <button>
+            <%= link "Sign Out", to: Routes.session_path(@conn, :delete), method: :delete %>
+          </button> 
       </nav>
       <% end %>
       <button>

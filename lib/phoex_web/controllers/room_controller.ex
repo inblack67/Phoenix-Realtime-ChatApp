@@ -3,6 +3,9 @@ defmodule PhoexWeb.RoomController do
   alias Phoex.Talk.Room
   alias Phoex.Talk.TalkRepo
 
+  # everything is protected except index
+  plug :protect_me when action not in [:index]
+
   def index(conn, _params) do
     rooms = TalkRepo.list_rooms()
     render(conn, "index.html", rooms: rooms)
@@ -61,4 +64,16 @@ defmodule PhoexWeb.RoomController do
     |> put_flash(:info, "Room deleted")
     |> redirect(to: Routes.room_path(conn, :index))
   end
+
+  defp protect_me(conn, _params)do
+    if conn.assigns.signed_in? do
+      conn
+    else
+      conn
+      |> put_flash(:error, "You'd need to Sign In for this")
+      |> redirect(to: Routes.session_path(conn, :new))
+      |> halt() # halt stops the connection
+    end
+  end
+
 end
