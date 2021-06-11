@@ -4,9 +4,10 @@ defmodule Phoex.Accounts.AccountsRepo do
 
   def sign_in(email, password) do
     user = Repo.get_by(User, email: email)
+    IO.inspect(user)
 
     cond do
-      user && Argon2.verify_pass(user.password_hash, password) ->
+      user && Argon2.verify_pass(password, user.password_hash) ->
         {:ok, user}
 
       true ->

@@ -1,5 +1,6 @@
 defmodule PhoexWeb.Router do
   use PhoexWeb, :router
+  alias PhoexWeb.Plugs.SetUser
 
   pipeline :browser do
     plug(:accepts, ["html"])
@@ -7,6 +8,7 @@ defmodule PhoexWeb.Router do
     plug(:fetch_flash)
     plug(:protect_from_forgery)
     plug(:put_secure_browser_headers)
+    plug(SetUser)
   end
 
   pipeline :api do
