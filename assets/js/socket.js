@@ -19,7 +19,7 @@ if (roomId) {
     });
 
   channel.on(`room:${roomId}:new_message`, (message) => {
-    displayMessage(message.body);
+    displayMessage(message);
   });
 
   document.querySelector('#message-form').addEventListener('submit', (e) => {
@@ -31,7 +31,7 @@ if (roomId) {
 
   const displayMessage = (message) => {
     const template = `<li>
-${message}
+${message.user} => ${message.body}
 </li>`;
     const list = document.querySelector('#message-list');
     list.innerHTML += template;

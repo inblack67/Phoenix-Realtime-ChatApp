@@ -13,11 +13,16 @@ defmodule PhoexWeb.Plugs.SetUser do
 
     cond do
       current_user = user_id && Repo.get(User, user_id) ->
+        # encrypted token
+        token = Phoenix.Token.sign(conn, "user_token", user_id)
+
         conn
         |> assign(:current_user, current_user)
         |> assign(:signed_in?, true)
-        true ->
-          conn
+        |> assign(:user_token, token)
+
+      true ->
+        conn
         |> assign(:current_user, nil)
         |> assign(:signed_in?, false)
     end
