@@ -14,6 +14,11 @@ iex -S mix
 
 mix phx.routes
 
+mix phx.gen.schema Accounts.User users email:unique username:unique password_hash
+
+# drop db
+mix ecto.drop
+
 ```
 
 To start your Phoenix server:
