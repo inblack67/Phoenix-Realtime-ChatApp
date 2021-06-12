@@ -15,7 +15,7 @@
     <input
       type="text"
       id="message-body"
-      placeholder="Input message for Room #<%= @room.name %>"
+      placeholder="Input message for Room <%= @room.name %>"
     />
     <button id="send-message">Send</button>
   </form>
