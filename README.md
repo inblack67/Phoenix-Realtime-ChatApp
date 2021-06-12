@@ -1,5 +1,18 @@
 # Phoex
 
+### Realtime Chat App
+
+- Elixir
+- Phoenix
+- Ecto
+- PostgreSQL
+
+### Features
+
+- Authentication
+- CRUD
+- Realtime Chat => Rooms & Messages
+
 ### Notes
 
 ```sh
